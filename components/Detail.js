@@ -46,7 +46,7 @@ function Detail() {
     {
       icon: <IoSpeedometerOutline />,
       heading: "Speed",
-      text: (data.wind.speed ?? 0) + " m/h",
+      text: (data ? data.wind.speed : 0) + " m/h",
     },
     {
       icon: <WiHumidity />,

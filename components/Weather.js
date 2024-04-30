@@ -7,8 +7,12 @@ import { getIconById } from "./Icon";
 function Weather() {
   const { data, isData } = useContext(AppContext);
   // const des=data.weather[0].description.
-  const iconId = !data ? bg : data.weather[0].icon;
-  const weatherIcon = getIconById(iconId);
+  const iconId = data ? data.weather[0].icon : null;
+  const weatherIcon = iconId ? (
+    getIconById(iconId)
+  ) : (
+    <Image src={bg} alt="background" height={60} width={60} />
+  );
   return (
     <div
       className="
@@ -55,7 +59,7 @@ function Weather() {
               <p> {data.coord.lat.toFixed(2)}</p>
             </div>
           </div>
-          <div className="text-2xl text-blue-400 p-2  border-b w-8/12">
+          <div className="text-2xl text-blue-200 p-1 mt-3 border-b w-8/12">
             {data.weather[0].main}
           </div>
         </>

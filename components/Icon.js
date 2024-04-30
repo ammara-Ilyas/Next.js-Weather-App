@@ -11,8 +11,7 @@ export function getIconById(id) {
       return <IoSunnyOutline />;
     case "moon":
       return <IoMoonOutline />;
-    // Add more cases for other IDs and icons
     default:
-      return null; // Return null for unknown IDs or handle them as needed
+      return null;
   }
 }
