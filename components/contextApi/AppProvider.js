@@ -5,10 +5,13 @@ export const AppContext = createContext();
 
 function AppProvider({ children }) {
   const [data, setData] = useState();
+  const [main, setMain] = useState();
   const [isData, setIsData] = useState(false);
 
   return (
-    <AppContext.Provider value={{ data, setData, isData, setIsData }}>
+    <AppContext.Provider
+      value={{ data, setData, isData, setIsData, main, setMain }}
+    >
       {children}
     </AppContext.Provider>
   );

@@ -3,9 +3,12 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import bg from "@/images/bg.jpeg";
 import { AppContext } from "./contextApi/AppProvider";
+import { getIconById } from "./Icon";
 function Weather() {
   const { data, isData } = useContext(AppContext);
   // const des=data.weather[0].description.
+  const iconId = !data ? bg : data.weather[0].icon;
+  const weatherIcon = getIconById(iconId);
   return (
     <div
       className="
@@ -16,25 +19,13 @@ function Weather() {
       ) : (
         <>
           <div className="flex   gap-5 items-center justify-between  px-20 w-full py-5  text-xl">
-            <Image src={bg} alt="logo" height={60} width={60} />
+            {/* <Image src={bg} alt="logo" height={60} width={60} /> */}
+            {weatherIcon}
             <div className="text-3xl font-light ">
               <p>
                 {data.main.temp} {isData ? "C" : "F"}
               </p>
             </div>
-
-            {/* <p>
-              Sunrise: {new Date(data.sys.sunrise * 1000).toLocaleTimeString()}
-            </p>
-
-            <p>{data.name}</p>
-            <div>{data && data.weather && data.weather[0].icon}</div>
-            <p>{data.weather[0].main}</p>
-          </div>
-          <div className="text-4xl font-bold">
-            <p>
-              {data.main.temp} {isData ? "C" : "F"}
-            </p> */}
           </div>
           <div className="text-3xl">
             <p className="tracking-wider	">
@@ -64,7 +55,7 @@ function Weather() {
               <p> {data.coord.lat.toFixed(2)}</p>
             </div>
           </div>
-          <div className="font-light p-2 px-4 border-b w-8/12">
+          <div className="text-2xl text-blue-400 p-2  border-b w-8/12">
             {data.weather[0].main}
           </div>
         </>
